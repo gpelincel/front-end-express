@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Data e Hora Atual</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🕒 Data e Hora Atual</h1>
+    <div class="datetime-box">
+      <p id="date">Carregando data...</p>
+      <p id="time">Carregando hora...</p>
+    </div>
+  </div>
+
+  <script>
+    fetch('https://api-express-dev-web.onrender.com/datetime')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('date').textContent = '📅 ' + data.date;
+        document.getElementById('time').textContent = '⏰ ' + data.time;
+      })
+      .catch(() => {
+        document.getElementById('date').textContent = 'Erro ao carregar a data.';
+        document.getElementById('time').textContent = 'Erro ao carregar a hora.';
+      });
+  </script>
+</body>
+</html>
